@@ -14,20 +14,31 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 30) {
             Text(title)
+            
             Button("Button #1") {
                 self.title = "Button #1 was pressed!"
             }
             .accentColor(.red)
+            
             Button {
-                self.title = "Button #2 was pressed!"
+                self.title = "Added to favourites!"
             } label: {
-                Text("Button #2")
+                Circle()
+                    .fill(Color.white)
+                    .frame(width: 75, height: 75, alignment: .center)
+                    .shadow(radius: 10)
+                    .overlay {
+                        Image(systemName: "heart.fill")
+                            .font(.largeTitle)
+                            .foregroundColor(Color(hue: 1.0, saturation: 0.715, brightness: 0.562))
+                    }
             }
             .accentColor(.orange)
+            
             Button(action: {
-                self.title = "Button #3 was pressed!"
+                self.title = "SAVED!"
             }, label: {
-                Text("Button #3".uppercased())
+                Text("Save".uppercased())
                     .font(.headline)
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
@@ -41,6 +52,21 @@ struct ContentView: View {
                 
             }
             )
+            
+            Button(action: {
+                self.title = "All finished!"
+            }, label: {
+                Text("Finish".uppercased())
+                    .font(.caption)
+                    .bold()
+                    .foregroundColor(.gray)
+                    .padding()
+                    .padding(.horizontal, 10)
+                    .background(
+                        Capsule()
+                            .stroke(Color.gray, lineWidth: 2.0)
+                    )
+            })
 
         }
     }
